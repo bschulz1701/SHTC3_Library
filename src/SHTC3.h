@@ -37,6 +37,7 @@ class SHTC3
 
 	private:
 		int WriteCMD(unsigned int CMD);
+		bool TestCRC(uint16_t Data, uint8_t CRC_Rec);
 		const int ADR = 0x70; //Default address
 };
 
