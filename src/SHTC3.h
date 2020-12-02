@@ -9,7 +9,7 @@
 	#include <Particle.h>
 #endif
 
-// #define ADR 0x70 //Define hardcoded address
+#define SHTC3_ADR 0x70 //Define hardcoded address
 // #define SLEEP 0xB098
 // #define WAKE 0x3517
 // #define READ_RH_LP 0x44DE
@@ -38,7 +38,7 @@ class SHTC3
 	private:
 		int WriteCMD(unsigned int CMD);
 		bool TestCRC(uint16_t Data, uint8_t CRC_Rec);
-		const int ADR = 0x70; //Default address
+		// const int ADR = 0x70; //Default address
 };
 
 #endif

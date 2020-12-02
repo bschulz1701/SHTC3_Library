@@ -14,7 +14,7 @@ int SHTC3::begin()
 		if(!Wire.isEnabled()) Wire.begin(); //Only initialize I2C if not done already //INCLUDE FOR USE WITH PARTICLE 
 	#endif
 
-	Wire.beginTransmission(ADR);
+	Wire.beginTransmission(SHTC3_ADR);
 	Wire.write(0x00);
 	return Wire.endTransmission(); //Return I2C status, just to check if device is connected to bus 
 
@@ -50,7 +50,7 @@ int SHTC3::GetData(float *Data) //Return array of data
 		Wire.read(); //Clear buffer
 	}
 
-	Wire.requestFrom(ADR, 6);
+	Wire.requestFrom(SHTC3_ADR, 6);
 	Timeout = millis();
 	while(Wire.available() < 6 && (millis() - Timeout) < 25); //Wait for all bytes or 25 ms
 	uint8_t RH_High = Wire.read(); //Must be unsigned since humidity is never negative
@@ -93,7 +93,7 @@ int SHTC3::GetData(float *Data) //Return array of data
 
 int SHTC3::WriteCMD(unsigned int CMD)
 {
-	Wire.beginTransmission(ADR);
+	Wire.beginTransmission(SHTC3_ADR);
 	Wire.write(CMD >> 8); //Write MSB
 	Wire.write(CMD & 0xFF); //Write LSB
 	return Wire.endTransmission();
